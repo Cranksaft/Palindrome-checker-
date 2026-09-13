@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        details {
+            max-width: 400px;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        summary {
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            outline: none;
+            user-select: none;
+            list-style: none; /* removes default marker (Firefox/Chrome) */
+        }
+
+        summary::-webkit-details-marker {
+            display: none; /* removes default marker (Safari/older Chrome) */
+        }
+
+        #triangle {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        /* Rotate the triangle to point down when open */
+        details[open] #triangle {
+            transform: rotate(90deg);
+        }
+
+        .progress-content {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .progress-counts {
+            margin: 0 0 10px 0;
+            font-weight: normal;
+            font-size: 0.95rem;
+        }
+
+        .progress-counts p {
+            margin: 2px 0;
+        }
+
+        .reset-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: none;
+            margin-bottom: 10px;
+            padding: 0;
+        }
+
+        details[open] .reset-btn {
+            display: inline-block;
+        }
+
+        .palindrome { color: #28a745; font-weight: bold; }
+        .not-palindrome { color: #dc3545; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h1>Palindrome Checker</h1>
+
+<input 
+    id="input" 
+    type="text" 
+    placeholder="Type something" 
+    onkeydown="handleKeyPress(event)" 
+    onfocus="clearAll()" 
+    onclick="clearAll()"
+    autocomplete="off"
+    spellcheck="false"
+/>
+
+<button onclick="check()">check</button>
+<input id="result" type="text" placeholder="Reverse" disabled />
+
+<br><br>
+<input id="verdict" type="text" placeholder="Verdict" disabled />
+
+<br><br>
+
+<details id="details">
+    <summary><span id="triangle">▶</span> Progress</summary>
+    
+    <div class="progress-content">
+        <div class="progress-counts">
+            <p>Correct: <span id="correct-count">0</span></p>
+            <p>Incorrect: <span id="incorrect-count">0</span></p>
+        </div>
+
+        <button class="reset-btn" onclick="resetHistory()" title="Reset progress">Reset 🔄</button>
+        
+        <ol id="history-list"></ol>
+    </div>
+</details>
+
+<script src="script.js"></script>
+</body>
+</html>
